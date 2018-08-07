@@ -13,7 +13,8 @@ export class AppComponent {
     new Goal(3, 'Get new Phone case'),
     new Goal(4, 'Get Dog Food'),
     new Goal(5, 'Solve math homework'),
-    new Goal(6, 'Plot my world domination plan')
+    new Goal(6, 'Plot my world domination plan'),
+    new Goal(7, 'debug errors')
   ];
 
 }
