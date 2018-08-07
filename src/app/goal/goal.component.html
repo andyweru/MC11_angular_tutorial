@@ -4,7 +4,7 @@
   <div *ngFor='let goal of goals;let i = index'>
     <li>{{goal.name}}</li>
     <button (click)='toogleDetails(i)'>Toogle Details</button>
-    <app-goal-details *ngIf="goal.showDescription" [goal]='goal'></app-goal-details>
+    <app-goal-details *ngIf="goal.showDescription" [goal]='goal' (isComplete)='completeGoal($event,i)'></app-goal-details>
   </div>
 </ul>
 <p *ngIf='goals.length > 5'>You have too many goals</p>
