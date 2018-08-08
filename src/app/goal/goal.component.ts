@@ -17,6 +17,16 @@ export class GoalComponent implements OnInit {
     new Goal(6, 'Plot my world domination plan','Cause I am an evil overload', new Date(2018,3,14))
   ]
 
+  deleteGoal(isComplete, index){
+    if(isComplete){
+      let toDelete = confirm(`Are you sure you want to delete ${this.goals[index].name}`)
+
+      if(toDelete){
+        this.goals.splice(index, 1)
+      }
+    }
+  }
+
   completeGoal(isComplete, index){
     if(isComplete){
       this.goals.splice(index, 1);
