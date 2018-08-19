@@ -1,22 +1,10 @@
-<h1>My Goals</h1>
-<hr>
-<div class="container">
+<h1>Quotes</h1>
+
+<div class="container text-center message">
   <div class="row">
-    <app-goal-form (addGoal) = "addNewGoal($event)"></app-goal-form>
+    <blockquote class="text-center text-lg">
+      <p>{{yutt.quote}}</p>
+      <footer><cite>{{yutt.author}}</cite></footer>
+    </blockquote>
   </div>
 </div>
-<div class="container">
-  <div class="row" *ngFor = "let goal of goals; let i = 'index'">
-    <div class="row">
-      <h4 id="{{i}}" appStrikethrough>{{goal.name}} due on {{goal.completeDate|date|uppercase}}</h4>
-      <button class="btn btn-primary" (click)='toogleDetails(i)'>Toggle Details</button>
-    </div>
-
-    <div class="row" *ngIf="goal.showDescription">
-      <app-goal-details [goal]='goal' (isComplete) = 'deleteGoal($event,i)'></app-goal-details>
-    </div>
-  </div>
-</div>
-
-
-<!-- <p *ngIf='goals.length > 5'>You have too many goals</p> -->
