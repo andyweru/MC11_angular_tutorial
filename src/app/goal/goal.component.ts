@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import {Goal} from '../goal';
 import {Goals} from '../goals';
+import {GoalService} from '../goals/goal.service';
 
 @Component({
   selector: 'app-goal',
   templateUrl: './goal.component.html',
-  styleUrls: ['./goal.component.css']
+  styleUrls: ['./goal.component.css'],
+  providers: [GoalService]
 })
 export class GoalComponent implements OnInit {
 
-  goals = Goals;
+  goals:Goal[];
 
   deleteGoal(isComplete, index){
     if(isComplete){
@@ -38,7 +40,9 @@ export class GoalComponent implements OnInit {
     this.goals.push(goal);
   }
 
-  constructor() { }
+  constructor(goalService:GoalService) { 
+    this.goals = goalService.getGoals()
+  }
 
   ngOnInit() {
   }
