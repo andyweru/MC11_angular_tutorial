@@ -18,7 +18,7 @@ import {AlertsService} from '../alert-service/alerts.service';
 export class GoalComponent implements OnInit {
 
   goals:Goal[];
-  yutt:Quote;
+  quote:Quote;
   alertService:AlertsService;
 
   deleteGoal(isComplete, index){
@@ -62,10 +62,10 @@ export class GoalComponent implements OnInit {
     }
 
     this.http.get<ApiResponse>("https://talaikis.com/api/quotes/random/").subscribe(data=>{
-      this.yutt = new Quote(data.quote,data.author)
+      this.quote = new Quote(data.quote,data.author)
 
     },err=>{
-      this.yutt= new Quote("Never, never, never give up.","winston churchill")
+      this.quote= new Quote("Never, never, never give up.","winston churchill")
       console.log("Error occured ")
     })
   }
