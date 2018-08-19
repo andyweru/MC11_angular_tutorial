@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import {Goal} from '../goal';
 import {Goals} from '../goals';
 
+import {HttpClient} from '@angular/common/http';
+
+import {Quote} from '../quote-class/quote'
+
 import {GoalService} from '../goals/goal.service';
 import {AlertsService} from '../alert-service/alerts.service';
 
@@ -14,6 +18,7 @@ import {AlertsService} from '../alert-service/alerts.service';
 export class GoalComponent implements OnInit {
 
   goals:Goal[];
+  quote:Quote;
   alertService:AlertsService;
 
   deleteGoal(isComplete, index){
@@ -44,12 +49,15 @@ export class GoalComponent implements OnInit {
     this.goals.push(goal);
   }
 
-  constructor(goalService:GoalService, alertService:AlertsService) { 
+  constructor(goalService:GoalService, alertService:AlertsService, private http:HttpClient) { 
     this.goals = goalService.getGoals()
     this.alertService = alertService;
   }
 
   ngOnInit() {
+    this.http.get("https://talakis.com/api/quotes/random").subscribe(data=>{
+
+    })
   }
 
 }
