@@ -14,6 +14,12 @@ import { DateCountPipe } from './date-count.pipe';
 import { GoalFormComponent } from './goal-form/goal-form.component';
 import { AboutComponent } from './about/about.component';
 
+// Defining routes
+const routes:Routes=[
+  {path:"goals",component:GoalComponent},
+  {path:"about",component:AboutComponent}
+]
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +33,8 @@ import { AboutComponent } from './about/about.component';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [AlertsService],
   bootstrap: [AppComponent]
