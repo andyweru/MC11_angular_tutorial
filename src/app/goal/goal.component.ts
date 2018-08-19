@@ -9,11 +9,13 @@ import {Quote} from '../quote-class/quote'
 import {GoalService} from '../goals/goal.service';
 import {AlertsService} from '../alert-service/alerts.service';
 
+import {QuoteRequestService} from '../quote-http/quote-request.service';
+
 @Component({
   selector: 'app-goal',
   templateUrl: './goal.component.html',
   styleUrls: ['./goal.component.css'],
-  providers: [GoalService]
+  providers: [GoalService,QuoteRequestService]
 })
 export class GoalComponent implements OnInit {
 
@@ -49,25 +51,15 @@ export class GoalComponent implements OnInit {
     this.goals.push(goal);
   }
 
-  constructor(goalService:GoalService, alertService:AlertsService, private http:HttpClient) { 
+  constructor(goalService:GoalService, alertService:AlertsService, private http:HttpClient, private quoteService:QuoteRequestService) { 
     this.goals = goalService.getGoals()
     this.alertService = alertService;
   }
 
   ngOnInit() {
 
-    interface ApiResponse{
-      quote:string;
-      author: string
-    }
-
-    this.http.get<ApiResponse>("https://talaikis.com/api/quotes/random/").subscribe(data=>{
-      this.quote = new Quote(data.quote,data.author)
-
-    },err=>{
-      this.quote= new Quote("Never, never, never give up.","winston churchill")
-      console.log("Error occured ")
-    })
+    this.quoteService.quoteRequest()
+    this.quote=this.quoteService.quote
   }
 
 }
